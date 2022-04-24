@@ -54,22 +54,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.black.withOpacity(0.5),
-          //getBackGroundColor(),
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            title: Center(child: Text(widget.title,style:const TextStyle(color: Colors.white,fontSize: 30),)),
+            title: Center(
+                child: Text(
+              widget.title,
+              style: const TextStyle(color: Colors.purple, fontSize: 30),
+            )),
           ),
-          body: Stack(
-    children: [
-      Image.asset("assets/tic tac toe.jpg",fit: BoxFit.cover,),
-      
+          body: Stack(children: [
+            Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset(
+                  "assets/moon.jpg",
+                  fit: BoxFit.fill,
+                )),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
             ),
-    ])),
+          ])),
     );
   }
 
@@ -84,9 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Color getFeildColor(String value) {
     switch (value) {
       case Player.O:
-        return Colors.blue;
+        return Colors.pink;
       case Player.X:
-        return Colors.green;
+        return Colors.purple;
       default:
         return Colors.white;
     }
