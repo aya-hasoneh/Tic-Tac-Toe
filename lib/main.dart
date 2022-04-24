@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Flutter Demo',
-      home: MyHomePage(title: 'X/O Game'),
+      home: MyHomePage(title: 'Tic Tac Toe'),
     );
   }
 }
@@ -54,15 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: getBackGroundColor(),
+          backgroundColor: Colors.black.withOpacity(0.5),
+          //getBackGroundColor(),
           appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Text(widget.title,style: TextStyle(color: Colors.black),),
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            title: Center(child: Text(widget.title,style:const TextStyle(color: Colors.white,fontSize: 30),)),
           ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
-          )),
+          body: Stack(
+    children: [
+      Image.asset("assets/tic tac toe.jpg",fit: BoxFit.cover,),
+      
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
+            ),
+    ])),
     );
   }
 
@@ -77,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Color getFeildColor(String value) {
     switch (value) {
       case Player.O:
-        return Colors.purple;
+        return Colors.blue;
       case Player.X:
         return Colors.green;
       default:
